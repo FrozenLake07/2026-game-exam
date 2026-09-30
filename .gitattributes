@@ -1,0 +1,60 @@
+# =========================================================
+# Unity 项目 .gitattributes —— 统一行尾符（LF），避免 Git 与 Unity 互相打架
+#
+# 用法：复制到【工程根目录】（与 Assets / Packages / .gitignore 同级）
+# 作用：
+#   1) 不再出现 "LF will be replaced by CRLF" 警告
+#   2) .meta / .unity / .prefab 不会被改行尾，Unity 不会反复重新导入
+#   3) Git 里不会出现"内容没变却显示已修改"的假改动
+#
+# 如果之前已经提交过，补一条：git add --renormalize . && git commit -m "规范化行尾符"
+# =========================================================
+
+# 默认：自动识别文本/二进制，文本统一以 LF 存储、LF 检出
+* text=auto eol=lf
+
+# ---- Unity 的文本资源：强制 LF ----
+*.meta               text eol=lf
+*.unity              text eol=lf
+*.prefab             text eol=lf
+*.asset              text eol=lf
+*.mat                text eol=lf
+*.anim               text eol=lf
+*.controller         text eol=lf
+*.overrideController text eol=lf
+*.mask               text eol=lf
+*.physicMaterial2D   text eol=lf
+*.physicsMaterial2D  text eol=lf
+*.preset             text eol=lf
+*.lightmap           text eol=lf
+
+# ---- 代码 / 配置 / 文档 ----
+*.cs     text eol=lf diff=csharp
+*.shader text eol=lf
+*.cginc  text eol=lf
+*.hlsl   text eol=lf
+*.json   text eol=lf
+*.xml    text eol=lf
+*.txt    text eol=lf
+*.md     text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+
+# ---- 二进制资源：禁止任何行尾转换 ----
+*.png          binary
+*.jpg          binary
+*.jpeg         binary
+*.psd          binary
+*.tga          binary
+*.bmp          binary
+*.gif          binary
+*.ttf          binary
+*.otf          binary
+*.dll          binary
+*.so           binary
+*.dylib        binary
+*.a            binary
+*.ico          binary
+*.unitypackage binary
+*.7z           binary
+*.zip          binary
